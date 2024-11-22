@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+  <meta charset="utf-8">
+
+
+  <title>Global Inter News - List</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style type="text/css">
+    body {
+      margin-top: 20px;
+    }
+
+    .blog-listing {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    .gray-bg {
+      background-color: white;
+    }
+
+    /* Blog 
+---------------------*/
+    .blog-grid {
+      box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+      border-radius: 5px;
+      overflow: hidden;
+      background: #ffffff;
+      margin-top: 15px;
+      margin-bottom: 15px;
+    }
+
+    .blog-grid .blog-img {
+      position: relative;
+    }
+
+    .blog-grid .blog-img .date {
+      position: absolute;
+      background: #fc5356;
+      color: #ffffff;
+      padding: 8px 15px;
+      left: 10px;
+      top: 10px;
+      border-radius: 4px;
+    }
+
+    .blog-grid .blog-img .date span {
+      font-size: 22px;
+      display: block;
+      line-height: 22px;
+      font-weight: 700;
+    }
+
+    .blog-grid .blog-img .date label {
+      font-size: 14px;
+      margin: 0;
+    }
+
+    .blog-grid .blog-info {
+      padding: 20px;
+    }
+
+    .blog-grid .blog-info h5 {
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0 0 10px;
+    }
+
+    .blog-grid .blog-info h5 a {
+      color: #20247b;
+    }
+
+    .blog-grid .blog-info p {
+      margin: 0;
+    }
+
+    .blog-grid .blog-info .btn-bar {
+      margin-top: 20px;
+    }
+
+
+    /* Blog Sidebar
+-------------------*/
+    .blog-aside .widget {
+      box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+      border-radius: 5px;
+      overflow: hidden;
+      background: #ffffff;
+      margin-top: 15px;
+      margin-bottom: 15px;
+      width: 100%;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .blog-aside .widget-body {
+      padding: 15px;
+    }
+
+    .blog-aside .widget-title {
+      padding: 15px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .blog-aside .widget-title h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fc5356;
+      margin: 0;
+    }
+
+    .blog-aside .widget-author .media {
+      margin-bottom: 15px;
+    }
+
+    .blog-aside .widget-author p {
+      font-size: 16px;
+      margin: 0;
+    }
+
+    .blog-aside .widget-author .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .blog-aside .widget-author h6 {
+      font-weight: 600;
+      color: #20247b;
+      font-size: 22px;
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    .blog-aside .post-aside {
+      margin-bottom: 15px;
+    }
+
+    .blog-aside .post-aside .post-aside-title h5 {
+      margin: 0;
+    }
+
+    .blog-aside .post-aside .post-aside-title a {
+      font-size: 18px;
+      color: #20247b;
+      font-weight: 600;
+    }
+
+    .blog-aside .post-aside .post-aside-meta {
+      padding-bottom: 10px;
+    }
+
+    .blog-aside .post-aside .post-aside-meta a {
+      color: #6F8BA4;
+      font-size: 12px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .blog-aside .latest-post-aside+.latest-post-aside {
+      border-top: 1px solid #eee;
+      padding-top: 15px;
+      margin-top: 15px;
+    }
+
+    .blog-aside .latest-post-aside .lpa-right {
+      width: 90px;
+    }
+
+    .blog-aside .latest-post-aside .lpa-right img {
+      border-radius: 3px;
+    }
+
+    .blog-aside .latest-post-aside .lpa-left {
+      padding-right: 15px;
+    }
+
+    .blog-aside .latest-post-aside .lpa-title h5 {
+      margin: 0;
+      font-size: 15px;
+    }
+
+    .blog-aside .latest-post-aside .lpa-title a {
+      color: #20247b;
+      font-weight: 600;
+    }
+
+    .blog-aside .latest-post-aside .lpa-meta a {
+      color: #6F8BA4;
+      font-size: 12px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-right: 10px;
+    }
+
+    .tag-cloud a {
+      padding: 4px 15px;
+      font-size: 13px;
+      color: #ffffff;
+      background: #20247b;
+      border-radius: 3px;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    .tag-cloud a:hover {
+      background: #fc5356;
+    }
+
+    .blog-single {
+      padding-top: 30px;
+      padding-bottom: 30px;
+    }
+
+    .article {
+      box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+      border-radius: 5px;
+      overflow: hidden;
+      background: #ffffff;
+      padding: 15px;
+      margin: 15px 0 30px;
+    }
+
+    .article .article-title {
+      padding: 15px 0 20px;
+    }
+
+    .article .article-title h6 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+
+    .article .article-title h6 a {
+      text-transform: uppercase;
+      color: #fc5356;
+      border-bottom: 1px solid #fc5356;
+    }
+
+    .article .article-title h2 {
+      color: #20247b;
+      font-weight: 600;
+    }
+
+    .article .article-title .media {
+      padding-top: 15px;
+      border-bottom: 1px dashed #ddd;
+      padding-bottom: 20px;
+    }
+
+    .article .article-title .media .avatar {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+
+    .article .article-title .media .media-body {
+      padding-left: 8px;
+    }
+
+    .article .article-title .media .media-body label {
+      font-weight: 600;
+      color: #fc5356;
+      margin: 0;
+    }
+
+    .article .article-title .media .media-body span {
+      display: block;
+      font-size: 12px;
+    }
+
+    .article .article-content h1,
+    .article .article-content h2,
+    .article .article-content h3,
+    .article .article-content h4,
+    .article .article-content h5,
+    .article .article-content h6 {
+      color: #20247b;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .article .article-content blockquote {
+      max-width: 600px;
+      padding: 15px 0 30px 0;
+      margin: 0;
+    }
+
+    .article .article-content blockquote p {
+      font-size: 20px;
+      font-weight: 500;
+      color: #fc5356;
+      margin: 0;
+    }
+
+    .article .article-content blockquote .blockquote-footer {
+      color: #20247b;
+      font-size: 16px;
+    }
+
+    .article .article-content blockquote .blockquote-footer cite {
+      font-weight: 600;
+    }
+
+    .article .tag-cloud {
+      padding-top: 10px;
+    }
+
+    .article-comment {
+      box-shadow: 0 0 30px rgba(31, 45, 61, 0.125);
+      border-radius: 5px;
+      overflow: hidden;
+      background: #ffffff;
+      padding: 20px;
+    }
+
+    .article-comment h4 {
+      color: #20247b;
+      font-weight: 700;
+      margin-bottom: 25px;
+      font-size: 22px;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    img {
+      vertical-align: middle;
+      border-style: none;
+    }
+  </style>
+  <meta charset="utf-8">
+  <title>Global Inter News</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta
+    content="Continuously evolving for your information-sharing efforts, adapt your technique as necessary, and constantly strive to offer cost on your target market."
+    name="keywords">
+  <meta content="Global Inter News"
+    name="Continuously evolving for your information-sharing efforts, adapt your technique as necessary, and constantly strive to offer cost on your target market.">
+
+  <!-- Favicon -->
+  <link href="{% static 'img/favicon.jpg' %}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9028823184140102"
+    crossorigin="anonymous"></script>
+
+  <!-- CSS Libraries -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+  <link href="{% static 'lib/slick/slick.css' %}" rel="stylesheet">
+  <link href="{% static 'lib/slick/slick-theme.css' %}" rel="stylesheet">
+
+  <!-- Template Stylesheet -->
+  <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+
+
+
+  <!-- Top Header Start -->
+  <div class="top-header">
+    <div class="container">
+      <div class="row align-items-center">
+        <div class="col-lg-3 col-md-4">
+          <div class="logo">
+            <a href="{% url 'indexpage' %}">
+              <img src="{% static 'img/logo1.png' %}" alt="Logo">
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-4">
+          <div class="search">
+            <form method="post" action="{% url 'searchpage' %}">
+              {% csrf_token %}
+              <input type="text" placeholder="Search" name="query" id="search">
+              <button type="submit"><i class="fa fa-search"></i></button>
+
+            </form>
+          </div>
+        </div>
+        <!-- <div class="col-lg-3 col-md-4">
+                  <div class="social">
+                      <a href=""><i class="fab fa-twitter"></i></a>
+                      <a href=""><i class="fab fa-facebook"></i></a>
+                      <a href=""><i class="fab fa-linkedin"></i></a>
+                      <a href="https://instagram.com/globalinternews?igshid=ZDdkNTZiNTM="><i
+                              class="fab fa-instagram"></i></a>
+                      <a href="https://t.me/+z4CmB7LKe1gzN2U1"><i class="fab fa-telegram"></i></a>
+                      <a href=""><i class="fab fa-youtube"></i></a>
+                  </div>
+              </div> -->
+      </div>
+    </div>
+  </div>
+  <!-- Top Header End -->
+
+
+  <!-- Header Start -->
+  <div class="header">
+    <div class="container">
+      <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a href="#" class="navbar-brand">MENU</a>
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+          <div class="navbar-nav m-auto">
+            <a href="{% url 'indexpage' %}" class="nav-item nav-link ">Home</a>
+            {% for i in smallbusiness|slice:"1" %}
+            <a href="{% url 'fullnewspage' %}?category={{i.category}}" class="nav-item nav-link">Small
+              Business</a>
+            {% endfor %}
+            {% for i in marketing|slice:"1" %}
+            <a href="{% url 'fullnewspage' %}?category={{i.category}}" class="nav-item nav-link">Marketing</a>
+            {% endfor %}
+            {% for i in businessideas|slice:"1" %}
+            <a href="{% url 'fullnewspage' %}?category={{i.category}}" class="nav-item nav-link">Business
+              Ideas</a>
+            {% endfor %}
+
+            {% for i in ecommerce|slice:"1" %}
+            <a href="{% url 'fullnewspage' %}?category={{i.category}}" class="nav-item nav-link">E-Commerce</a>
+            {% endfor %}
+            {% for i in entrepreneurship|slice:"1" %}
+            <a href="{% url 'fullnewspage' %}?category={{i.category}}" class="nav-item nav-link">Entrepreneurship</a>
+            {% endfor %}
+            <div class="nav-item dropdown ">
+              <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">More</a>
+              <div class="dropdown-menu">
+                <a href="{% url 'contactpage' %}" class="dropdown-item ">Contact Us</a>
+                <a href="{% url 'aboutpage' %}" class="dropdown-item ">About Us</a>
+
+                <!-- {% if user.is_authenticated %}
+                              <h6 class="text-uppercase mb-1">Hello, {{user.username}}</h6>
+                              {% endif %} -->
+              </div>
+            </div>
+            {% if user.is_authenticated %}
+            <a href="{% url 'logoutpage' %}" class="nav-item nav-link">Log Out</a>
+            {% else %}
+            <a href="{% url 'registerpage' %}" class="nav-item nav-link">Register</a>
+
+            <a href="{% url 'loginpage' %}" class="nav-item nav-link">Log In</a>
+            {% endif %}
+          </div>
+      </nav>
+    </div>
+  </div>
+  <!-- Header End -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
+    integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+  <section class="blog-listing gray-bg">
+    <div class="container">
+      <div class="row align-items-start">
+        <div class="col-lg-8 m-15px-tb">
+          <div class="row">
+
+
+            {% for i in datafinal %}
+            <div class="col-sm-6">
+              <div class="blog-grid">
+                <div class="blog-img">
+                  <!-- <div class="date">
+                    <span>04</span>
+                    <label>FEB</label>
+                  </div>-->
+                  <a href="{% url 'contentpage' %}?search={{i.slug}}&id={{i.id}}">
+                    <img src="{{i.img.url}}" title="" alt="">
+                  </a>
+                </div>
+                <div class="blog-info">
+                  <h5><a href="{% url 'contentpage' %}?search={{i.slug}}&id={{i.id}}">{{i.heading}}</a></h5>
+
+                  <p>{{i.desc | truncatechars:100 | safe }}</p>
+
+                  <div class="btn-bar">
+                    <a href="{% url 'contentpage' %}?search={{i.slug}}&id={{i.id}}" class="px-btn-arrow">
+                      <span>Read More</span>
+                      <i class="arrow"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            {% for i in datafinal|slice:"1" %}
+            <div class="col-12">
+              <ul class="pagination justify-content-center">
+                {% if datafinal.has_previous %}
+                <li class="page-item ">
+                  <a class="page-link" href="/fullnews/?category={{i.category}}&page=1" tabindex="-1">First</a>
+                </li>
+                <li class="page-item ">
+                  <a class="page-link" href="/fullnews/?category={{i.category}}&page={{datafinal.previous_page_number}}"
+                    tabindex="-1">Previous</a>
+                </li>
+                {% endif %}
+                {% for n in datafinal.paginator.page_range %}
+                {% if datafinal.number == n %}
+                <li class="page-item active">
+                  <a class="page-link" href="/fullnews/?category={{i.category}}&page={{n}}">{{n}}</a>
+                </li>
+                {% else %}
+                <li class="page-item">
+                  <a class="page-link" href="/fullnews/?category={{i.category}}&page={{n}}">{{n}}</a>
+                </li>
+                {% endif %}
+                {% endfor %}
+                {% if datafinal.has_next %}
+                <li class="page-item">
+                  <a class="page-link"
+                    href="/fullnews/?category={{i.category}}&page={{datafinal.next_page_number}}">Next</a>
+                </li>
+                <li class="page-item">
+                  <a class="page-link" href="/fullnews/?category={{i.category}}&page={{lastpage}}">Last</a>
+                </li>
+                {% endif %}
+              </ul>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+
+
+
+
+        <div class="col-lg-4 m-15px-tb blog-aside">
+          <!-- <div class="widget widget-author">
+              <div class="widget-title">
+                  <h3>Author</h3>
+              </div>
+              <div class="widget-body">
+                  <div class="media align-items-center">
+                      <div class="avatar">
+                          <img src="https://bootdey.com/img/Content/avatar/avatar6.png" title="" alt="">
+                      </div>
+                      <div class="media-body">
+                          <h6>Hello, I'm<br> Rachel Roth</h6>
+                      </div>
+                  </div>
+                  <p>I design and develop services for customers of all sizes, specializing in creating
+                      stylish, modern
+                      websites, web services and online stores</p>
+              </div>
+          </div> -->
+          <!-- <div class="widget widget-post">
+              <div class="widget-title">
+                  <h3>Trending Now</h3>
+              </div>
+              <div class="widget-body">
+              </div>
+          </div>-->
+          <div class="widget widget-latest-post">
+              <div class="widget-title">
+                  <h3>Trending Now</h3>
+              </div>
+              <div class="widget-body">
+                  {% for i in blog|slice:"3" %}
+                  <div class="latest-post-aside media">
+                      <div class="lpa-left media-body">
+                          <div class="lpa-title">
+                              <h5><a href="{% url 'contentpage' %}?search={{i.slug}}&id={{i.id}}">{{i.heading}}</a></h5>
+                          </div>
+                          <div class="lpa-meta">
+                              <a class="name" href="{% url 'contentpage' %}?search={{i.slug}}&id={{i.id}}">
+                                  Admin
+                              </a>
+                              <a class="date" href="{% url 'contentpage' %}?search={{i.slug}}&id={{i.id}}">
+                                  {{i.date}}
+                              </a>
+                          </div>
+                      </div>
+                      <div class="lpa-right">
+                          <a href="{% url 'contentpage' %}?search={{i.slug}}&id={{i.id}}">
+                              <img src="{{i.img.url}}" title="" alt="">
+                          </a>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+          <div class="widget widget-latest-post">
+              <div class="widget-title">
+                  <h3>Popular Posts</h3>
+              </div>
+              <div class="widget-body">
+                  {% for i in random|slice:"3" %}
+                  <div class="latest-post-aside media">
+                      <div class="lpa-left media-body">
+                          <div class="lpa-title">
+                              <h5><a href="{% url 'contentpage' %}?search={{i.slug}}&id={{i.id}}">{{i.heading}}</a></h5>
+                          </div>
+                          <div class="lpa-meta">
+                              <a class="name" href="#">
+                                  Rachel Roth
+                              </a>
+                              <a class="date" href="{% url 'contentpage' %}?search={{i.slug}}&id={{i.id}}">
+                                  {{i.date}}
+                              </a>
+                          </div>
+                      </div>
+                      <div class="lpa-right">
+                          <a href="{% url 'contentpage' %}?search={{i.slug}}&id={{i.id}}">
+                              <img src="{{i.img.url}}" title="" alt="">
+                          </a>
+                      </div>
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+          <div class="widget widget-tags">
+              <div class="widget-title">
+                  <h3>Latest Tags</h3>
+              </div>
+              <div class="widget-body">
+                  {% for post in blog %}
+                  <div class="nav tag-cloud">
+                      {% for tag in post.tags.all %}
+                      <a href="{% url 'sidetagpage' %}?key={{tag.name}}">{{ tag.name }}</a>
+                      {% endfor %}
+                  </div>
+                  {% endfor %}
+              </div>
+          </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </section>
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+  <script type="text/javascript">
+
+  </script>
+
+
+  <!-- Footer Start -->
+  <div class="footer">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-widget">
+            <h3 class="title">Useful Links</h3>
+            <ul>
+              <li><a href="{% url 'indexpage' %}">Home</a></li>
+              <li><a href="{% url 'contactpage' %}">Contact Us</a></li>
+              <li><a href="{% url 'privacypage' %}">Privacy Policy</a></li>
+              <li><a href="{% url 'termspage' %}">Terms & Conditions</a></li>
+              <li><a href="{% url 'disclaimerpage' %}">Disclaimer</a></li>
+              <li><a href="{% url 'aboutpage' %}">About Us</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-widget">
+            <h3 class="title">Quick Links</h3>
+            <ul>
+              {% for i in smallbusiness|slice:"1" %}
+              <li><a href="{% url 'fullnewspage' %}?category={{i.category}}">Small Business</a></li>
+              {% endfor %}
+              {% for i in marketing|slice:"1" %}
+              <li><a href="{% url 'fullnewspage' %}?category={{i.category}}">Marketing</a></li>
+              {% endfor %}
+              {% for i in entrepreneurship|slice:"1" %}
+              <li><a href="{% url 'fullnewspage' %}?category={{i.category}}">Entrepreneurship</a></li>
+              {% endfor %}
+              {% for i in ecommerce|slice:"1" %}
+              <li><a href="{% url 'fullnewspage' %}?category={{i.category}}">E-Commerce</a></li>
+              {% endfor %}
+              {% for i in businessideas|slice:"1" %}
+              <li><a href="{% url 'fullnewspage' %}?category={{i.category}}">Business Ideas</a></li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-widget">
+            <h3 class="title">Get in Touch</h3>
+            <div class="contact-info">
+              <p><i class="fa fa-map-marker"></i>Kerala,India</p>
+              <p><i class="fa fa-envelope"></i>newsglobalinter@gmail.com</p>
+              <!-- <p><i class="fa fa-phone"></i>+123-456-7890</p> -->
+              <!-- <div class="social">
+                              <a href=""><i class="fab fa-twitter"></i></a>
+                              <a href=""><i class="fab fa-facebook"></i></a>
+                              <a href=""><i class="fab fa-linkedin"></i></a>
+                              <a href=""><i class="fab fa-instagram"></i></a>
+                              <a href=""><i class="fab fa-youtube"></i></a>
+                          </div> -->
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="footer-widget">
+            <h3 class="title">Who we are</h3>
+            <div class="newsletter">
+              <p>
+                "Welcome to Global Inter News, a informative blog dedicated to Business. We are
+                passionate about providing Knowledge, and our goal is to spread them."
+              </p>
+              <!-- <form>
+                              <input class="form-control" type="email" placeholder="Your email here">
+                              <button class="btn">Submit</button>
+                          </form>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer End -->
+
+
+  <!-- Footer Bottom Start -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 copyright">
+          <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
+        </div>
+
+        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+        <div class="col-md-6 template-by">
+          <!--<p>Template By <a href="https://htmlcodex.com">Adarsh and Paul</a></p>-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Footer Bottom End -->
+
+
+  <!-- Back to Top -->
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+  <!-- JavaScript Libraries -->
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+  <script src="{% static 'lib/easing/easing.min.js' %}"></script>
+  <script src="{% static 'lib/slick/slick.min.js' %}"></script>
+
+
+  <!-- Template Javascript -->
+  <script src="{% static 'js/main.js' %}"></script>
+
+
+</body>
+
+</html>

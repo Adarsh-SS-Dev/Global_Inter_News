@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-Y6Z8LDGXPD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-Y6Z8LDGXPD');
+</script>
+    <meta charset="utf-8">
+    <title>Disclaimer</title>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta content="Continuously evolving for your information-sharing efforts, adapt your technique as necessary, and constantly strive to offer cost on your target market." name="keywords">
+    <meta content="Global Inter News" name="Continuously evolving for your information-sharing efforts, adapt your technique as necessary, and constantly strive to offer cost on your target market.">
+
+    <!-- Favicon -->
+    <link href="{% static 'img/favicon.jpg' %}" rel="icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+    
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9028823184140102"
+     crossorigin="anonymous"></script>
+
+    <!-- CSS Libraries -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+    <link href="{% static 'lib/slick/slick.css' %}" rel="stylesheet">
+    <link href="{% static 'lib/slick/slick-theme.css' %}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+
+
+</head>
+
+<body>
+    <!-- Top Header Start -->
+    <div class="top-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-3 col-md-4">
+                    <div class="logo">
+                        <a href="{% url 'indexpage' %}">
+                            <img src="{% static 'img/logo1.png' %}" alt="Logo">
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-4">
+                    <div class="search">
+                        <form method="post" action="{% url 'searchpage' %}">
+                            {% csrf_token %}
+                            <input type="text" placeholder="Search" name="query" id="search">
+                            <button type="submit"><i class="fa fa-search"></i></button>
+
+                        </form>
+                    </div>
+                </div>
+                <!-- <div class="col-lg-3 col-md-4">
+                    <div class="social">
+                        <a href=""><i class="fab fa-twitter"></i></a>
+                        <a href=""><i class="fab fa-facebook"></i></a>
+                        <a href=""><i class="fab fa-linkedin"></i></a>
+                        <a href="https://instagram.com/globalinternews?igshid=ZDdkNTZiNTM="><i
+                                class="fab fa-instagram"></i></a>
+                        <a href="https://t.me/+z4CmB7LKe1gzN2U1"><i class="fab fa-telegram"></i></a>
+                        <a href=""><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+    <!-- Top Header End -->
+
+
+    <!-- Header Start -->
+    <div class="header">
+        <div class="container">
+            <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+                <a href="#" class="navbar-brand">MENU</a>
+                <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
+                    <div class="navbar-nav m-auto">
+                        <a href="{% url 'indexpage' %}" class="nav-item nav-link ">Home</a>
+                        {% for i in smallbusiness|slice:"1" %}
+                        <a href="{% url 'fullnewspage' %}?category={{i.category}}" class="nav-item nav-link">Small
+                            Business</a>
+                        {% endfor %}
+                        {% for i in marketing|slice:"1" %}
+                        <a href="{% url 'fullnewspage' %}?category={{i.category}}"
+                            class="nav-item nav-link">Marketing</a>
+                        {% endfor %}
+                        {% for i in businessideas|slice:"1" %}
+                        <a href="{% url 'fullnewspage' %}?category={{i.category}}" class="nav-item nav-link">Business
+                            Ideas</a>
+                        {% endfor %}
+
+                        {% for i in ecommerce|slice:"1" %}
+                        <a href="{% url 'fullnewspage' %}?category={{i.category}}"
+                            class="nav-item nav-link">E-Commerce</a>
+                        {% endfor %}
+                        {% for i in entrepreneurship|slice:"1" %}
+                        <a href="{% url 'fullnewspage' %}?category={{i.category}}"
+                            class="nav-item nav-link">Entrepreneurship</a>
+                        {% endfor %}
+                        <div class="nav-item dropdown ">
+                            <a href="#" class="nav-link dropdown-toggle " data-toggle="dropdown">More</a>
+                            <div class="dropdown-menu">
+                                <a href="{% url 'contactpage' %}" class="dropdown-item ">Contact Us</a>
+                                <a href="{% url 'aboutpage' %}" class="dropdown-item ">About Us</a>
+
+                                <!-- {% if user.is_authenticated %}
+                                <h6 class="text-uppercase mb-1">Hello, {{user.username}}</h6>
+                                {% endif %} -->
+                            </div>
+                        </div>
+                        {% if user.is_authenticated %}
+                        <a href="{% url 'logoutpage' %}" class="nav-item nav-link">Log Out</a>
+                        {% else %}
+                        <a href="{% url 'registerpage' %}" class="nav-item nav-link">Register</a>
+
+                        <a href="{% url 'loginpage' %}" class="nav-item nav-link">Log In</a>
+                        {% endif %}
+                    </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Header End -->
+        
+        <center>
+          
+            Global Inter News Disclaimer
+
+Last Updated: 16/9/2023
+
+<h1>1. Use of Website</h1>
+
+By using this website, you agree to comply with and be bound by the following disclaimer and terms of use. If you disagree with any part of this disclaimer, please do not use our website.
+
+<h1>2. Content Accuracy</h1>
+
+The information provided on this website is for general informational purposes only. We make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information contained on the website. Any reliance you place on such information is strictly at your own risk.
+
+<h1>3. Professional Advice</h1>
+
+The information on this website is not intended as professional advice of any kind. Always seek the advice of a qualified professional with any questions you may have regarding a medical condition, legal matter, or any other subject.
+
+<h1>4. External Links</h1>
+
+This website may contain links to external websites that are not provided or maintained by us. We do not guarantee the accuracy, relevance, timeliness, or completeness of any information on these external websites.
+
+<h1>5. Affiliate Disclosure</h1>
+
+This website may contain affiliate links, which means we may earn a commission if you make a purchase through these links. However, this does not affect our editorial integrity, and the content and opinions expressed are our own.
+
+<h1>6. Limitation of Liability</h1>
+
+In no event will we be liable for any loss or damage including, without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of data or profits arising out of, or in connection with, the use of this website.
+
+<h1>7. Copyright</h1>
+
+All content on this website is the property of Global Inter News unless otherwise stated. Unauthorized use and/or duplication of this material without express and written permission from this site’s author and/or owner is strictly prohibited.
+
+<h1>8. Changes to Disclaimer</h1>
+
+We reserve the right to modify or replace this disclaimer at any time without prior notice. Your continued use of our website after any changes to this disclaimer will be considered acceptance of those changes.
+
+<h1>9. Contact Information</h1>
+
+If you have any questions or concerns regarding this disclaimer, please contact us at newsglobalinter@gmail.com.
+            
+</center>
+        
+        
+           <!-- Footer Start -->
+    <div class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h3 class="title">Useful Links</h3>
+                        <ul>
+                            <li><a href="{% url 'indexpage' %}">Home</a></li>
+                            <li><a href="{% url 'contactpage' %}">Contact Us</a></li>
+                            <li><a href="{% url 'privacypage' %}">Privacy Policy</a></li>
+                            <li><a href="{% url 'termspage' %}">Terms & Conditions</a></li>
+                            <li><a href="{% url 'disclaimerpage' %}">Disclaimer</a></li>
+                            <li><a href="{% url 'aboutpage' %}">About Us</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h3 class="title">Quick Links</h3>
+                        <ul>
+                            {% for i in smallbusiness|slice:"1" %}
+                            <li><a href="{% url 'fullnewspage' %}?category={{i.category}}">Small Business</a></li>
+                            {% endfor %}
+                            {% for i in marketing|slice:"1" %}
+                            <li><a href="{% url 'fullnewspage' %}?category={{i.category}}">Marketing</a></li>
+                            {% endfor %}
+                            {% for i in entrepreneurship|slice:"1" %}
+                            <li><a href="{% url 'fullnewspage' %}?category={{i.category}}">Entrepreneurship</a></li>
+                            {% endfor %}
+                            {% for i in ecommerce|slice:"1" %}
+                            <li><a href="{% url 'fullnewspage' %}?category={{i.category}}">E-Commerce</a></li>
+                            {% endfor %}
+                            {% for i in businessideas|slice:"1" %}
+                            <li><a href="{% url 'fullnewspage' %}?category={{i.category}}">Business Ideas</a></li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h3 class="title">Get in Touch</h3>
+                        <div class="contact-info">
+                            <p><i class="fa fa-map-marker"></i>Kerala,India</p>
+                            <p><i class="fa fa-envelope"></i>newsglobalinter@gmail.com</p>
+                            <!-- <p><i class="fa fa-phone"></i>+123-456-7890</p> -->
+                            <!-- <div class="social">
+                                <a href=""><i class="fab fa-twitter"></i></a>
+                                <a href=""><i class="fab fa-facebook"></i></a>
+                                <a href=""><i class="fab fa-linkedin"></i></a>
+                                <a href=""><i class="fab fa-instagram"></i></a>
+                                <a href=""><i class="fab fa-youtube"></i></a>
+                            </div> -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6">
+                    <div class="footer-widget">
+                        <h3 class="title">Who we are</h3>
+                        <div class="newsletter">
+                            <p>
+                                "Welcome to Global Inter News, a informative blog dedicated to Business. We are
+                                passionate about providing Knowledge, and our goal is to spread them."
+                            </p>
+                            <!-- <form>
+                                <input class="form-control" type="email" placeholder="Your email here">
+                                <button class="btn">Submit</button>
+                            </form>-->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer End -->
+
+
+    <!-- Footer Bottom Start -->
+    <div class="footer-bottom">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 copyright">
+                    <p>Copyright &copy; <a href="https://htmlcodex.com">HTML Codex</a>. All Rights Reserved</p>
+                </div>
+
+                <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+                <div class="col-md-6 template-by">
+                    <!--<p>Template By <a href="https://htmlcodex.com">Adarsh and Paul</a></p>-->
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer Bottom End -->
+
+        <!-- Back to Top -->
+        <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+
+
+        <!-- JavaScript Libraries -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
+        <script src="lib/easing/easing.min.js"></script>
+        <script src="lib/slick/slick.min.js"></script>
+
+
+        <!-- Template Javascript -->
+        <script src="js/main.js"></script>
+    </body>
+</html>
